@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseCore
 
 class JoinViewController: UIViewController {
     
@@ -58,7 +60,13 @@ class JoinViewController: UIViewController {
         button.layer.cornerRadius = 6
         return button
     }()
-
+    
+    let emailPattern = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}$"
+    let pwPattern = "^.*(?=^.{8,16}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$"
+    var emailValid = false
+    var pwValid = false
+    var allValid = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "회원가입"
@@ -101,6 +109,55 @@ class JoinViewController: UIViewController {
         
     fileprivate func addTarget() {
         joinBtn.addTarget(self, action: #selector(didTapJoinButton(_:)), for: .touchUpInside)
+        
+        emailTf.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        pwTf.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+    }
+    
+    fileprivate func isValid(text: String, pattern: String) -> Bool {
+        let pred = NSPredicate(format: "SELF MATCHES %@", pattern)
+        return pred.evaluate(with: text)
+    }
+    
+    fileprivate func checkEmail() {
+        if isValid(text: emailTf.text!, pattern: emailPattern) {
+            emailValid = true
+            print(emailValid)
+        } else {
+            emailValid = false
+            print(emailValid)
+        }
+    }
+    
+    fileprivate func checkPw() {
+        if isValid(text: pwTf.text!, pattern: pwPattern) {
+            pwValid = true
+            print(pwValid)
+        } else {
+            pwValid = false
+            print(pwValid)
+        }
+    }
+    
+    fileprivate func checkAll() {
+        if emailValid && pwValid {
+            allValid = true
+        } else {
+            allValid = false
+        }
+    }
+    
+    @objc func textFieldDidChange(_ sender: UITextField) -> Bool {
+        switch sender {
+        case emailTf:
+            checkEmail()
+        case pwTf:
+            checkPw()
+        default:
+            break
+        }
+        checkAll()
+        return true
     }
     
     @objc func didTapJoinButton(_ sender: UIButton) {
