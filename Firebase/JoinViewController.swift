@@ -122,27 +122,25 @@ class JoinViewController: UIViewController {
     fileprivate func checkEmail() {
         if isValid(text: emailTf.text!, pattern: emailPattern) {
             emailValid = true
-            print(emailValid)
         } else {
             emailValid = false
-            print(emailValid)
         }
     }
     
     fileprivate func checkPw() {
         if isValid(text: pwTf.text!, pattern: pwPattern) {
             pwValid = true
-            print(pwValid)
         } else {
             pwValid = false
-            print(pwValid)
         }
     }
     
     fileprivate func checkAll() {
         if emailValid && pwValid {
+            print("email, pw Valid Success")
             allValid = true
         } else {
+            print("email, pw Valid Fail")
             allValid = false
         }
     }
@@ -164,13 +162,30 @@ class JoinViewController: UIViewController {
         print("회원가입 버튼 클릭")
         
         if let email = emailTf.text {
-            print(email)
+            print("Email : ",email)
         }
         
         if let pw = pwTf.text {
-            print(pw)
+            print("Password : ",pw)
         }
         
+        if allValid {
+            createUser()
+        }
     }
     
+    fileprivate func createUser() {
+        guard let email = emailTf.text else { return }
+        guard let pw = pwTf.text else { return }
+        
+        Auth.auth().createUser(withEmail: email, password: pw) {result,error in
+            if let error = error {
+                print(error)
+            }
+            
+            if let result = result {
+                print(result)
+            }
+        }
+    }
 }
