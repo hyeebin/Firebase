@@ -16,6 +16,7 @@
 		E3C7CA852A41663C00DCC60C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3C7CA842A41663C00DCC60C /* Assets.xcassets */; };
 		E3C7CA882A41663C00DCC60C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3C7CA862A41663C00DCC60C /* LaunchScreen.storyboard */; };
 		E3C7CA902A41856800DCC60C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C7CA8F2A41856800DCC60C /* GoogleService-Info.plist */; };
+		E3CBCF952A52A451009CDB61 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CBCF942A52A451009CDB61 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		E3C7CA872A41663C00DCC60C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3C7CA892A41663C00DCC60C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3C7CA8F2A41856800DCC60C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E3CBCF942A52A451009CDB61 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +61,6 @@
 			isa = PBXGroup;
 			children = (
 				E3C7CA7A2A41663B00DCC60C /* Firebase */,
-				E3C7CA792A41663B00DCC60C /* Products */,
 				134F9404F68801EB0654DE84 /* Pods */,
 				FD3D78915ED809329D7C6417 /* Frameworks */,
 			);
@@ -71,6 +72,7 @@
 				E3C7CA782A41663B00DCC60C /* Firebase.app */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		E3C7CA7A2A41663B00DCC60C /* Firebase */ = {
@@ -80,6 +82,8 @@
 				E3C7CA7D2A41663B00DCC60C /* SceneDelegate.swift */,
 				E3C7CA7F2A41663B00DCC60C /* ViewController.swift */,
 				E3396C922A42CB6200742E28 /* JoinViewController.swift */,
+				E3CBCF942A52A451009CDB61 /* LoginViewController.swift */,
+				E3C7CA792A41663B00DCC60C /* Products */,
 				E3C7CA812A41663B00DCC60C /* Main.storyboard */,
 				E3C7CA842A41663C00DCC60C /* Assets.xcassets */,
 				E3C7CA862A41663C00DCC60C /* LaunchScreen.storyboard */,
@@ -216,6 +220,7 @@
 				E3C7CA802A41663B00DCC60C /* ViewController.swift in Sources */,
 				E3C7CA7C2A41663B00DCC60C /* AppDelegate.swift in Sources */,
 				E3396C932A42CB6300742E28 /* JoinViewController.swift in Sources */,
+				E3CBCF952A52A451009CDB61 /* LoginViewController.swift in Sources */,
 				E3C7CA7E2A41663B00DCC60C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
