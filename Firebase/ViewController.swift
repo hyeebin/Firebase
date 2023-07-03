@@ -83,26 +83,30 @@ class ViewController: UIViewController {
     
     @objc func didTapJoinButton(_ sender: UIButton) {
         let joinVC = JoinViewController()
-        joinVC.modalPresentationStyle = .overFullScreen
-        present(joinVC, animated: true)
+        let navVC = UINavigationController(rootViewController: joinVC)
+        navVC.modalPresentationStyle = .overFullScreen
+        present(navVC, animated: true)
     }
     
     @objc func didTapLoginButton(_ sender: UIButton) {
         let loginVC = LoginViewController()
-        loginVC.modalPresentationStyle = .overFullScreen
-        present(loginVC, animated: true)
+        let navVC = UINavigationController(rootViewController: loginVC)
+        navVC.modalPresentationStyle = .overFullScreen
+        present(navVC, animated: true)
     }
     
     @objc func didTapPwResetButton(_ sender: UIButton) {
         let pwresetVC = PwResetViewController()
-        pwresetVC.modalPresentationStyle = .overFullScreen
-        present(pwresetVC, animated: true)
+        let navVC = UINavigationController(rootViewController: pwresetVC)
+        navVC.modalPresentationStyle = .overFullScreen
+        present(navVC, animated: true)
     }
     
     @objc func didTapDeleteButton(_ sender: UIButton) {
         let deleteVC = DeleteAccountViewController()
-        deleteVC.modalPresentationStyle = .overFullScreen
-        present(deleteVC, animated: true)
+        let navVC = UINavigationController(rootViewController: deleteVC)
+        navVC.modalPresentationStyle = .overFullScreen
+        present(navVC, animated: true)
     }
 
 }

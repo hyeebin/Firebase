@@ -197,6 +197,9 @@ class LoginViewController: UIViewController {
             if authResult == nil {
                 alertLb.text = "로그인 정보가 존재하지 않습니다"
                 alertLb.textColor = .systemRed
+                if let errorCode = error {
+                    print(errorCode)
+                }
             }else if authResult != nil {
                 alertLb.text = "로그인 성공!"
                 alertLb.textColor = .systemBlue
