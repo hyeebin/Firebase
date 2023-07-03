@@ -23,14 +23,23 @@ class ViewController: UIViewController {
         return button
     }()
     
+    lazy var pwresetBtn: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("비밀번호 재설정", for: .normal)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.addSubview(joinBtn)
         view.addSubview(loginBtn)
+        view.addSubview(pwresetBtn)
 
         joinBtn.addTarget(self, action: #selector(didTapJoinButton(_:)), for: .touchUpInside)
         loginBtn.addTarget(self, action: #selector(didTapLoginButton(_:)), for: .touchUpInside)
+        pwresetBtn.addTarget(self, action: #selector(didTapPwResetButton(_:)), for: .touchUpInside)
 
         let joinBtnConstraints = [
             joinBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
@@ -44,8 +53,15 @@ class ViewController: UIViewController {
             loginBtn.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             loginBtn.heightAnchor.constraint(equalToConstant: 64)
         ]
+        let pwresetBtnConstraints = [
+            pwresetBtn.topAnchor.constraint(equalTo: loginBtn.bottomAnchor, constant: 40),
+            pwresetBtn.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            pwresetBtn.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            pwresetBtn.heightAnchor.constraint(equalToConstant: 64)
+        ]
         NSLayoutConstraint.activate(joinBtnConstraints)
         NSLayoutConstraint.activate(loginBtnConstraints)
+        NSLayoutConstraint.activate(pwresetBtnConstraints)
     }
     
     @objc func didTapJoinButton(_ sender: UIButton) {
@@ -59,5 +75,12 @@ class ViewController: UIViewController {
         loginVC.modalPresentationStyle = .overFullScreen
         present(loginVC, animated: true)
     }
+    
+    @objc func didTapPwResetButton(_ sender: UIButton) {
+        let pwresetVC = PwResetViewController()
+        pwresetVC.modalPresentationStyle = .overFullScreen
+        present(pwresetVC, animated: true)
+    }
+
 }
 
