@@ -1,5 +1,5 @@
 //
-//  PwResetViewController.swift
+//  DeleteAccountViewController.swift
 //  Firebase
 //
 //  Created by cubicinc on 2023/07/03.
@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseCore
 
-class PwResetViewController: UIViewController {
+class DeleteAccountViewController: UIViewController {
     
     lazy var baseView: UIView = {
         var view = UIView()
@@ -30,7 +30,7 @@ class PwResetViewController: UIViewController {
     lazy var titleLb: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "비밀번호 재설정"
+        label.text = "회원탈퇴"
         label.textAlignment = .center
         return label
     }()
@@ -39,6 +39,14 @@ class PwResetViewController: UIViewController {
         var view = UITextField()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.placeholder = "이메일을 입력해주세요"
+        view.borderStyle = .roundedRect
+        return view
+    }()
+    
+    lazy var pwTf: UITextField = {
+        var view = UITextField()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.placeholder = "비밀번호를 입력해주세요"
         view.borderStyle = .roundedRect
         return view
     }()
@@ -55,7 +63,17 @@ class PwResetViewController: UIViewController {
     lazy var loginBtn: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("임시 비밀번호 이메일로 보내기", for: .normal)
+        button.setTitle("로그인", for: .normal)
+        button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 6
+        return button
+    }()
+    
+    lazy var deleteBtn: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("회원탈퇴", for: .normal)
         button.backgroundColor = .systemBlue
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 6
@@ -63,11 +81,14 @@ class PwResetViewController: UIViewController {
     }()
     
     let emailPattern = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}$"
+    let pwPattern = "^.*(?=^.{8,16}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$"
     var emailValid = false
+    var pwValid = false
+    var allValid = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "비밀번호 재설정"
+        title = "회원탈퇴"
         view.backgroundColor = .white
         addViews()
         applyConstraints()
@@ -81,8 +102,10 @@ class PwResetViewController: UIViewController {
         baseView.addSubview(stackView)
         stackView.addArrangedSubview(titleLb)
         stackView.addArrangedSubview(emailTf)
+        stackView.addArrangedSubview(pwTf)
         stackView.addArrangedSubview(alertLb)
         stackView.addArrangedSubview(loginBtn)
+        stackView.addArrangedSubview(deleteBtn)
     }
     
     fileprivate func applyConstraints() {
@@ -109,8 +132,10 @@ class PwResetViewController: UIViewController {
         
     fileprivate func addTarget() {
         loginBtn.addTarget(self, action: #selector(didTaploginButton(_:)), for: .touchUpInside)
+        deleteBtn.addTarget(self, action: #selector(didTapDeleteButton(_:)), for: .touchUpInside)
         
         emailTf.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        pwTf.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
     }
     
     fileprivate func isValid(text: String, pattern: String) -> Bool {
@@ -126,11 +151,21 @@ class PwResetViewController: UIViewController {
         }
     }
     
+    fileprivate func checkPw() {
+        if isValid(text: pwTf.text!, pattern: pwPattern) {
+            pwValid = true
+        } else {
+            pwValid = false
+        }
+    }
+    
     fileprivate func checkAll() {
-        if emailValid {
+        if emailValid && pwValid {
             print("email, pw Valid Success")
+            allValid = true
         } else {
             print("email, pw Valid Fail")
+            allValid = false
         }
     }
     
@@ -138,6 +173,8 @@ class PwResetViewController: UIViewController {
         switch sender {
         case emailTf:
             checkEmail()
+        case pwTf:
+            checkPw()
         default:
             break
         }
@@ -150,11 +187,35 @@ class PwResetViewController: UIViewController {
             print("Email : ",email)
         }
         
+        if let pw = pwTf.text {
+            print("Password : ",pw)
+        }
+        
         alertLb.isHidden = false
         
-        if emailValid {
+        if allValid {
             signInUser()
-        } else if !emailValid {
+        } else if !allValid {
+            alertLb.text = "이메일/비밀번호 형식이 틀렸습니다"
+            alertLb.textColor = .systemRed
+        }
+    }
+    
+    @objc func didTapDeleteButton(_ sender: UIButton) {
+        if let email = emailTf.text {
+            print("Email : ",email)
+        }
+        
+        if let pw = pwTf.text {
+            print("Password : ",pw)
+        }
+        
+        alertLb.isHidden = false
+        
+        if allValid {
+
+
+        } else if !allValid {
             alertLb.text = "이메일/비밀번호 형식이 틀렸습니다"
             alertLb.textColor = .systemRed
         }
@@ -162,19 +223,15 @@ class PwResetViewController: UIViewController {
     
     fileprivate func signInUser() {
         guard let email = emailTf.text else { return }
+        guard let pw = pwTf.text else { return }
         
-        Auth.auth().sendPasswordReset(withEmail: email) { [self] error in
-            guard let error = error else {
-                print("메세지 보내기 성공")
-                return
-            }
-            let nsError : NSError = error as NSError
-            switch nsError.code {
-            case 17011:
-                alertLb.text = "존재하지 않는 이메일입니다"
-                print("메세지 보내기 실패")
-            default:
-                break
+        Auth.auth().signIn(withEmail: email, password: pw) { [self] authResult, error in
+            if authResult == nil {
+                alertLb.text = "로그인 정보가 존재하지 않습니다"
+                alertLb.textColor = .systemRed
+            }else if authResult != nil {
+                alertLb.text = "로그인 성공!"
+                alertLb.textColor = .systemBlue
             }
         }
     }

@@ -30,16 +30,26 @@ class ViewController: UIViewController {
         return button
     }()
     
+    lazy var deleteBtn: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("회원탈퇴", for: .normal)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.addSubview(joinBtn)
         view.addSubview(loginBtn)
         view.addSubview(pwresetBtn)
+        view.addSubview(deleteBtn)
 
         joinBtn.addTarget(self, action: #selector(didTapJoinButton(_:)), for: .touchUpInside)
         loginBtn.addTarget(self, action: #selector(didTapLoginButton(_:)), for: .touchUpInside)
         pwresetBtn.addTarget(self, action: #selector(didTapPwResetButton(_:)), for: .touchUpInside)
+        deleteBtn.addTarget(self, action: #selector(didTapDeleteButton(_:)), for: .touchUpInside)
+
 
         let joinBtnConstraints = [
             joinBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
@@ -59,9 +69,16 @@ class ViewController: UIViewController {
             pwresetBtn.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             pwresetBtn.heightAnchor.constraint(equalToConstant: 64)
         ]
+        let deleteBtnConstraints = [
+            deleteBtn.topAnchor.constraint(equalTo: pwresetBtn.bottomAnchor, constant: 40),
+            deleteBtn.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            deleteBtn.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            deleteBtn.heightAnchor.constraint(equalToConstant: 64)
+        ]
         NSLayoutConstraint.activate(joinBtnConstraints)
         NSLayoutConstraint.activate(loginBtnConstraints)
         NSLayoutConstraint.activate(pwresetBtnConstraints)
+        NSLayoutConstraint.activate(deleteBtnConstraints)
     }
     
     @objc func didTapJoinButton(_ sender: UIButton) {
@@ -80,6 +97,12 @@ class ViewController: UIViewController {
         let pwresetVC = PwResetViewController()
         pwresetVC.modalPresentationStyle = .overFullScreen
         present(pwresetVC, animated: true)
+    }
+    
+    @objc func didTapDeleteButton(_ sender: UIButton) {
+        let deleteVC = DeleteAccountViewController()
+        deleteVC.modalPresentationStyle = .overFullScreen
+        present(deleteVC, animated: true)
     }
 
 }

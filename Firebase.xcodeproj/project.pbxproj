@@ -18,6 +18,7 @@
 		E3C7CA902A41856800DCC60C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C7CA8F2A41856800DCC60C /* GoogleService-Info.plist */; };
 		E3CBCF952A52A451009CDB61 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CBCF942A52A451009CDB61 /* LoginViewController.swift */; };
 		E3CBCF972A52A931009CDB61 /* PwResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CBCF962A52A931009CDB61 /* PwResetViewController.swift */; };
+		E3CBCF9A2A52C3E5009CDB61 /* DeleteAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CBCF992A52C3E5009CDB61 /* DeleteAccountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		E3C7CA8F2A41856800DCC60C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E3CBCF942A52A451009CDB61 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E3CBCF962A52A931009CDB61 /* PwResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PwResetViewController.swift; sourceTree = "<group>"; };
+		E3CBCF992A52C3E5009CDB61 /* DeleteAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				E3396C922A42CB6200742E28 /* JoinViewController.swift */,
 				E3CBCF942A52A451009CDB61 /* LoginViewController.swift */,
 				E3CBCF962A52A931009CDB61 /* PwResetViewController.swift */,
+				E3CBCF992A52C3E5009CDB61 /* DeleteAccountViewController.swift */,
 				E3C7CA792A41663B00DCC60C /* Products */,
 				E3C7CA812A41663B00DCC60C /* Main.storyboard */,
 				E3C7CA842A41663C00DCC60C /* Assets.xcassets */,
@@ -221,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3C7CA802A41663B00DCC60C /* ViewController.swift in Sources */,
+				E3CBCF9A2A52C3E5009CDB61 /* DeleteAccountViewController.swift in Sources */,
 				E3C7CA7C2A41663B00DCC60C /* AppDelegate.swift in Sources */,
 				E3396C932A42CB6300742E28 /* JoinViewController.swift in Sources */,
 				E3CBCF952A52A451009CDB61 /* LoginViewController.swift in Sources */,
