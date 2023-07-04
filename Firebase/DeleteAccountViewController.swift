@@ -202,23 +202,7 @@ class DeleteAccountViewController: UIViewController {
     }
     
     @objc func didTapDeleteButton(_ sender: UIButton) {
-        if let email = emailTf.text {
-            print("Email : ",email)
-        }
-        
-        if let pw = pwTf.text {
-            print("Password : ",pw)
-        }
-        
-        alertLb.isHidden = false
-        
-        if allValid {
-
-
-        } else if !allValid {
-            alertLb.text = "이메일/비밀번호 형식이 틀렸습니다"
-            alertLb.textColor = .systemRed
-        }
+        deleteAccount()
     }
     
     fileprivate func signInUser() {
@@ -229,10 +213,38 @@ class DeleteAccountViewController: UIViewController {
             if authResult == nil {
                 alertLb.text = "로그인 정보가 존재하지 않습니다"
                 alertLb.textColor = .systemRed
+                if let errorCode = error {
+                    print(errorCode)
+                }
             }else if authResult != nil {
                 alertLb.text = "로그인 성공!"
                 alertLb.textColor = .systemBlue
             }
+        }
+    }
+    
+    fileprivate func deleteAccount() {
+        if Auth.auth().currentUser != nil {
+            let user = Auth.auth().currentUser
+            if let user = user {
+                user.delete { [self] error in
+                  if let error = error {
+                    // An error happened.
+                      alertLb.text = "회원탈퇴 에러 발생!"
+                      alertLb.textColor = .systemRed
+                      print("Firebase Error : ",error)
+                  } else {
+                    // Account deleted.
+                      alertLb.text = "회원탈퇴 성공!"
+                      alertLb.textColor = .systemBlue
+                      print("Delete Account")
+                  }
+                }
+            }
+        } else {
+            alertLb.text = "로그인 정보가 존재하지 않습니다"
+            alertLb.textColor = .systemRed
+            print("Delete Account : No User")
         }
     }
 }

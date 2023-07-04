@@ -153,14 +153,14 @@ class PwResetViewController: UIViewController {
         alertLb.isHidden = false
         
         if emailValid {
-            signInUser()
+            sendPasswordReset()
         } else if !emailValid {
             alertLb.text = "이메일/비밀번호 형식이 틀렸습니다"
             alertLb.textColor = .systemRed
         }
     }
     
-    fileprivate func signInUser() {
+    fileprivate func sendPasswordReset() {
         guard let email = emailTf.text else { return }
         
         Auth.auth().sendPasswordReset(withEmail: email) { [self] error in

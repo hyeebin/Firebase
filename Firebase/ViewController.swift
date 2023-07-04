@@ -37,6 +37,11 @@ class ViewController: UIViewController {
         return button
     }()
     
+    lazy var backButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action:  #selector(self.backAction))
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -44,12 +49,11 @@ class ViewController: UIViewController {
         view.addSubview(loginBtn)
         view.addSubview(pwresetBtn)
         view.addSubview(deleteBtn)
-
+    
         joinBtn.addTarget(self, action: #selector(didTapJoinButton(_:)), for: .touchUpInside)
         loginBtn.addTarget(self, action: #selector(didTapLoginButton(_:)), for: .touchUpInside)
         pwresetBtn.addTarget(self, action: #selector(didTapPwResetButton(_:)), for: .touchUpInside)
         deleteBtn.addTarget(self, action: #selector(didTapDeleteButton(_:)), for: .touchUpInside)
-
 
         let joinBtnConstraints = [
             joinBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
@@ -85,6 +89,7 @@ class ViewController: UIViewController {
         let joinVC = JoinViewController()
         let navVC = UINavigationController(rootViewController: joinVC)
         navVC.modalPresentationStyle = .overFullScreen
+        joinVC.navigationItem.leftBarButtonItem = backButton
         present(navVC, animated: true)
     }
     
@@ -92,6 +97,7 @@ class ViewController: UIViewController {
         let loginVC = LoginViewController()
         let navVC = UINavigationController(rootViewController: loginVC)
         navVC.modalPresentationStyle = .overFullScreen
+        loginVC.navigationItem.leftBarButtonItem = backButton
         present(navVC, animated: true)
     }
     
@@ -99,6 +105,7 @@ class ViewController: UIViewController {
         let pwresetVC = PwResetViewController()
         let navVC = UINavigationController(rootViewController: pwresetVC)
         navVC.modalPresentationStyle = .overFullScreen
+        pwresetVC.navigationItem.leftBarButtonItem = backButton
         present(navVC, animated: true)
     }
     
@@ -106,7 +113,12 @@ class ViewController: UIViewController {
         let deleteVC = DeleteAccountViewController()
         let navVC = UINavigationController(rootViewController: deleteVC)
         navVC.modalPresentationStyle = .overFullScreen
+        deleteVC.navigationItem.leftBarButtonItem = backButton
         present(navVC, animated: true)
+    }
+    
+    @objc func backAction() {
+        dismiss(animated: true, completion: nil)
     }
 
 }
