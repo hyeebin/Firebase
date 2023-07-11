@@ -88,7 +88,7 @@ class DeleteAccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "회원탈퇴"
+//        title = "회원탈퇴"
         view.backgroundColor = .white
         addViews()
         applyConstraints()
@@ -224,21 +224,18 @@ class DeleteAccountViewController: UIViewController {
     }
     
     fileprivate func deleteAccount() {
-        if Auth.auth().currentUser != nil {
-            let user = Auth.auth().currentUser
-            if let user = user {
-                user.delete { [self] error in
-                  if let error = error {
+        if  let user = Auth.auth().currentUser {
+            user.delete { [self] error in
+                if let error = error {
                     // An error happened.
-                      alertLb.text = "회원탈퇴 에러 발생!"
-                      alertLb.textColor = .systemRed
-                      print("Firebase Error : ",error)
-                  } else {
+                    alertLb.text = "회원탈퇴 에러 발생!"
+                    alertLb.textColor = .systemRed
+                    print("Firebase Error : ",error)
+                } else {
                     // Account deleted.
-                      alertLb.text = "회원탈퇴 성공!"
-                      alertLb.textColor = .systemBlue
-                      print("Delete Account")
-                  }
+                    alertLb.text = "회원탈퇴 성공!"
+                    alertLb.textColor = .systemBlue
+                    print("Delete Account")
                 }
             }
         } else {

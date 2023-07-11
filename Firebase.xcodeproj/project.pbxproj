@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0DEC8159EB36A7B3D75B3402 /* Pods_Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA346019845471F2FE171E41 /* Pods_Firebase.framework */; };
+		E31B30BA2A5D3A3400D42B21 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31B30B92A5D3A3400D42B21 /* ProfileViewController.swift */; };
 		E3396C932A42CB6300742E28 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3396C922A42CB6200742E28 /* JoinViewController.swift */; };
 		E3C7CA7C2A41663B00DCC60C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C7CA7B2A41663B00DCC60C /* AppDelegate.swift */; };
 		E3C7CA7E2A41663B00DCC60C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C7CA7D2A41663B00DCC60C /* SceneDelegate.swift */; };
@@ -25,6 +26,7 @@
 		00AD172E4C8EA40DDE9C3452 /* Pods-Firebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase.release.xcconfig"; path = "Target Support Files/Pods-Firebase/Pods-Firebase.release.xcconfig"; sourceTree = "<group>"; };
 		AA346019845471F2FE171E41 /* Pods_Firebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Firebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B44EAC182EA7C3E409D93BC7 /* Pods-Firebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase.debug.xcconfig"; path = "Target Support Files/Pods-Firebase/Pods-Firebase.debug.xcconfig"; sourceTree = "<group>"; };
+		E31B30B92A5D3A3400D42B21 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E3396C922A42CB6200742E28 /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		E3C7CA782A41663B00DCC60C /* Firebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Firebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C7CA7B2A41663B00DCC60C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				E3CBCF942A52A451009CDB61 /* LoginViewController.swift */,
 				E3CBCF962A52A931009CDB61 /* PwResetViewController.swift */,
 				E3CBCF992A52C3E5009CDB61 /* DeleteAccountViewController.swift */,
+				E31B30B92A5D3A3400D42B21 /* ProfileViewController.swift */,
 				E3C7CA792A41663B00DCC60C /* Products */,
 				E3C7CA812A41663B00DCC60C /* Main.storyboard */,
 				E3C7CA842A41663C00DCC60C /* Assets.xcassets */,
@@ -229,6 +232,7 @@
 				E3396C932A42CB6300742E28 /* JoinViewController.swift in Sources */,
 				E3CBCF952A52A451009CDB61 /* LoginViewController.swift in Sources */,
 				E3C7CA7E2A41663B00DCC60C /* SceneDelegate.swift in Sources */,
+				E31B30BA2A5D3A3400D42B21 /* ProfileViewController.swift in Sources */,
 				E3CBCF972A52A931009CDB61 /* PwResetViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
